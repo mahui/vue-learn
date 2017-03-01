@@ -1,0 +1,65 @@
+<html lang="zh-cn">
+<head>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.js"></script>
+</head>
+<body>
+
+  <div id = "abc">
+    {{a+1}}
+    {{b|capitalize}}
+    <button :disabled="ableVal" @click="clickEvent">阿布擦</button>
+    {{reverseMessage}}
+    {{now()}}
+    <br>
+    <input v-model="question">
+    <br>
+    {{answer}}
+  </div>
+
+  <script type="text/javascript">
+  var data = {a:1,ableVal:true,b:"abcd",question:'',answer:"你还没有提出问题呢"}
+  var vm = new Vue({
+    el:'#abc',
+    data:data,
+    filters:{
+      capitalize: function(value){
+        if(!value) return '';
+        value = value.toString();
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    },
+    methods:{
+      clickEvent: function(){
+        alert("点了一下");
+      },
+      now: function(){
+        return Date.now();
+      },
+      doAnswer:_.debounce(function(newVal,oldVal){
+        this.answer = "您输入了" + newVal + ", 您上一个的输入为" + oldVal;
+      }, 1000)},
+    computed:{
+      reverseMessage: function(){
+        return this.b.split('').reverse().join('')
+      }
+    },
+    watch:{question: function(newVal,oldVal){
+      this.answer = "正在输入...";
+      this.doAnswer(newVal,oldVal);
+    }}
+  })
+  vm.a === data.a
+  vm.a = 2
+  vm.$el = document.getElementById("abc");
+  vm.$watch('a',function(newVal,oldVal){
+    alert('value change');
+  })
+
+  var MyComponent = Vue.extend({
+
+  })
+  var myComponentInstance = new MyComponent()
+  </script>
+</body>
+</html>

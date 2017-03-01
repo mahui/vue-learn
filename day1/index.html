@@ -1,0 +1,50 @@
+<html lang="zh-cn">
+<head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <span v-bind:title='title'>
+    {{message}}
+    {{myData.data1}}
+    <p v-if="seen" v-on:click="reverseMessage">{{alterVal}}</p>
+  </span>
+  <ol  type="A">
+    <li v-for="i in items">{{i.item}}</li>
+    <todo-item></todo-item>
+    <com-with-data v-for="i in items" v-bind:d='i' v-bind:key='i.item'></com-with-data>
+  </ol>
+  <input v-model="message">
+  </div>
+  <script type="text/javascript">
+  Vue.component('todo-item', {
+    template: '<li>This is a todo</li>'
+  })
+  Vue.component('com-with-data',{
+    props:['d'],
+    template: '<li>{{d.item}}</li>'
+  })
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello world',
+      title: 'title',
+      myData:{data1:'data1'},
+      seen: true,
+      alterVal:'点我',
+      items:[
+        {item:"一个人"},
+        {item:"俩人"},
+        {item:"仨人"}
+      ]
+    },
+    methods:{
+      reverseMessage: function(){
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  })
+  </script>
+</body>
+</html>

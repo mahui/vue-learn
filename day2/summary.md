@@ -1,0 +1,8 @@
+- v-bind :
+- v-if
+- v-on @
+- js表达式
+- 计算属性基于依赖缓存，非响应式
+- methods
+- watch
+- computed
