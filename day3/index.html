@@ -1,0 +1,16 @@
+<html lang="zh-Hans-CN">
+<head>
+  <script type="text/javascript" src="http://vuejs.org/js/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/vue.resource/1.0.0/vue-resource.min.js"></script>
+  <script src="scripts/component.js"></script>
+  <script src="scripts/app.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ol>
+      <dh-item v-for="item in domains" v-bind:domain="item" :key="item.url"> 123 {{ item.url }}</dh-item>
+    </ol>
+  </div>
+
+</body>
+</html>

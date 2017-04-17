@@ -1,0 +1,6 @@
+{
+  domains:[
+    {url:"http://192.168.24.99:8080/secure/Dashboard.jspa",domain_name:"JIRA",desc:"项目管理系统"},
+    {url:"http://192.168.24.88:8090/dashboard.action",domain_name:"Confluence",dexc:"文档管理系统"}
+  ]
+}
